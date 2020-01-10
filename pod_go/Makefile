@@ -71,8 +71,6 @@ test: clean test_publish pod_core
 	$(V) mkdir -p $(TEST_OUTPUT_DIR)
 	$(V) $(GO) clean -testcache ./...
 	mv ecc_pub.bin $(TEST_ECC_PUB)
-	$(V) export DYLD_LIBRARY_PATH=$(POD_CORE_DIR)
-	$(V) export LD_LIBRARY_PATH=$(POD_CORE_DIR)
 	$(V) $(GO_TEST) ./...
 	make clean
 
