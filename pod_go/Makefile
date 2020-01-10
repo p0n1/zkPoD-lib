@@ -67,6 +67,7 @@ all:
 
 test: clean test_publish pod_core
 	@echo "+ Testing ..."
+	echo $(LIBRARY_PATH)
 	$(V) rm -rf $(TEST_OUTPUT_DIR)
 	$(V) mkdir -p $(TEST_OUTPUT_DIR)
 	$(V) $(GO) clean -testcache ./...
