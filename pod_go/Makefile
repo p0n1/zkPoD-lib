@@ -67,13 +67,14 @@ all:
 
 test: clean test_publish pod_core
 	@echo "+ Testing ..."
-	echo $(LIBRARY_PATH)
 	$(V) rm -rf $(TEST_OUTPUT_DIR)
 	$(V) mkdir -p $(TEST_OUTPUT_DIR)
 	$(V) $(GO) clean -testcache ./...
 	mv ecc_pub.bin $(TEST_ECC_PUB)
-	cp $(POD_CORE_DIR)/libpod_core.so .
-	ls
+	export DYLD_LIBRARY_PATH=$(POD_CORE_DIR)
+	export LD_LIBRARY_PATH=$(POD_CORE_DIR)
+	echo $DYLD_LIBRARY_PATH
+	echo $LD_LIBRARY_PATH
 	$(V) $(GO_TEST) ./...
 	make clean
 
