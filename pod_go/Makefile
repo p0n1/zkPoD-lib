@@ -71,7 +71,12 @@ test: clean test_publish pod_core
 	$(V) mkdir -p $(TEST_OUTPUT_DIR)
 	$(V) $(GO) clean -testcache ./...
 	mv ecc_pub.bin $(TEST_ECC_PUB)
-	$(V) echo $(POD_CORE_DIR)
+	$(V) echo $(LIBRARY_PATH)
+	$(V) ls $(POD_CORE_DIR)
+	$(V) export DYLD_LIBRARY_PATH=$(POD_CORE_DIR)
+	$(V) echo $(DYLD_LIBRARY_PATH)
+	$(V) cp $(POD_CORE_DIR)/libpod_core.so $(POD_CORE_DIR)/libpod_core.dylib
+	$(V) cp $(POD_CORE_DIR)/libpod_core.dylib .
 	$(V) $(GO_TEST) ./...
 	make clean
 
