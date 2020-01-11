@@ -6,6 +6,8 @@ matrix:
           dist: bionic
         - os: osx
           osx_image: xcode11
+        - os: osx
+          osx_image: xcode11.3
 
 go: 
  - "1.12.x"
@@ -14,7 +16,7 @@ git:
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install libomp-dev libcrypto++-dev libboost-all-dev libgmp-dev; fi
   # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libcryptopp boost gmp openssl; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libcryptopp pkg-config; brew info openssl; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libcryptopp; brew info openssl; fi
   - cd $HOME && mkdir zkPoD && cd zkPoD
   - mv $GOPATH/src/github.com/sec-bit/zkPoD-lib .
   - cd zkPoD-lib
@@ -23,7 +25,7 @@ before_install:
   - git submodule init && git submodule update
   - mkdir build && cd build
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cmake -DCMAKE_INSTALL_PREFIX=../../install -DMULTICORE=ON -DWITH_PROCPS=OFF -DWITH_SUPERCOP=OFF -DCURVE=MCL_BN128 ..; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig cmake -DCMAKE_INSTALL_PREFIX=../../install -DMULTICORE=OFF -DWITH_PROCPS=OFF -DWITH_SUPERCOP=OFF -DCURVE=MCL_BN128 -DUSE_ASM=OFF ..; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then tree /usr/local/opt/openssl/include; tree /usr/local/opt/openssl/lib; tree /usr/local/opt/openssl/lib/pkgconfig; cat /usr/local/opt/openssl/lib/pkgconfig/libcrypto.pc; CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig cmake -DCMAKE_INSTALL_PREFIX=../../install -DMULTICORE=OFF -DWITH_PROCPS=OFF -DWITH_SUPERCOP=OFF -DCURVE=MCL_BN128 -DUSE_ASM=OFF ..; fi
   - make -j 2 && make install
 
 script:
