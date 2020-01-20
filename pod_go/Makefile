@@ -75,7 +75,7 @@ test: clean test_publish pod_core
 	$(V) ls $(POD_CORE_DIR)
 	$(V) export DYLD_LIBRARY_PATH=$(POD_CORE_DIR)
 	$(V) echo $(DYLD_LIBRARY_PATH)
-	$(V) otool $(POD_CORE_DIR)/libpod_core.so
+	$(V) otool -L $(POD_CORE_DIR)/libpod_core.so
 	$(V) $(GO_TEST) ./...
 	make clean
 
