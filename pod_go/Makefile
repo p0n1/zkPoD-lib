@@ -73,7 +73,10 @@ test: clean test_publish pod_core
 	mv ecc_pub.bin $(TEST_ECC_PUB)
 	$(V) csrutil status
 	$(V) otool -L $(POD_CORE_DIR)/libpod_core.so
+	$(V) otool -l $(POD_CORE_DIR)/libpod_core.so
 	$(V) install_name_tool -id "@rpath/libpod_core.so" $(POD_CORE_DIR)/libpod_core.so
+	$(V) otool -L $(POD_CORE_DIR)/libpod_core.so
+	$(V) otool -l $(POD_CORE_DIR)/libpod_core.so
 	$(V) $(GO_TEST) ./...
 	make clean
 
