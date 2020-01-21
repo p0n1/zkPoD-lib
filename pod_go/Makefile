@@ -51,7 +51,7 @@ TEST_PUBLISH_DIR := $(TEST_DATA_DIR)/publish
 TEST_PUBLISH_PLAIN_DIR := $(TEST_PUBLISH_DIR)/plain
 TEST_PUBLISH_TABLE_DIR := $(TEST_PUBLISH_DIR)/table
 
-PKG_ROOT_NAME := github.com/sec-bit/zkPoD-lib/pod_go
+PKG_ROOT_NAME := github.com/p0n1/zkPoD-lib/pod_go
 
 ifeq ($(OS_TYPE), Darwin)
 	LIBRARY_PATH := DYLD_LIBRARY_PATH=$(POD_CORE_DIR)
