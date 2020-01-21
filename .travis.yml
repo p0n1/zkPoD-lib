@@ -18,7 +18,7 @@ before_install:
   # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libcryptopp boost gmp openssl; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install libcryptopp; fi
   - cd $HOME && mkdir zkPoD && cd zkPoD
-  - mv $GOPATH/src/github.com/sec-bit/zkPoD-lib .
+  - mv $GOPATH/src/github.com/p0n1/zkPoD-lib .
   - cd zkPoD-lib
   - git submodule init && git submodule update
   - cd depends/libsnark
